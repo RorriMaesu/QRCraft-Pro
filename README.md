@@ -1,5 +1,5 @@
 <!-- Banner Image -->
-![QRCraft Pro Banner](./images/banner.jpg)
+![QRCraft Pro Banner](./images/testimonials/qrlogobanner.png)
 
 # QRCraft Pro
 <!-- Badges -->
