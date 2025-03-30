@@ -1,4 +1,11 @@
+<!-- Banner Image -->
+![QRCraft Pro Banner](./images/banner.jpg)
+
 # QRCraft Pro
+<!-- Badges -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-live-brightgreen.svg)](https://rorrimaesu.github.io/QRCraft-Pro/)
+[![Open Source Love](https://img.shields.io/badge/Open-Source-blue.svg)]()
 
 Enterprise-grade QR code generator with advanced customization and logo integration. Free and open-source.
 
@@ -6,17 +13,18 @@ Enterprise-grade QR code generator with advanced customization and logo integrat
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Demo](#demo)
-- [Installation & Deployment](#installation--deployment)
-- [GitHub Pages Setup](#github-pages-setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Support](#support)
+- [Overview ⚡](#overview)
+- [Features ✨](#features)
+- [Demo 🚀](#demo)
+- [Installation & Deployment 🛠](#installation--deployment)
+- [GitHub Pages Setup 🌐](#github-pages-setup)
+- [Usage 📲](#usage)
+- [Contributing 🤝](#contributing)
+- [License 📄](#license)
+- [Support ❤️](#support)
 
 ## Overview
+> QRCraft Pro is designed for businesses and individuals who need a professional QR code solution. Trusted by renowned organizations and used by over 10,000 professionals worldwide.
 
 QRCraft Pro is designed for businesses and individuals who need a professional QR code solution. The tool is trusted by organizations like Green Clean, Veritas News AI, and Naked Sage Astrology, and is used daily by over 10,000 professionals worldwide.
 
