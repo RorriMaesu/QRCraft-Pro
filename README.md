@@ -93,6 +93,10 @@ If you find value in QRCraft Pro, consider becoming a proud supporter—your con
 - **Reciprocity:** Your backing motivates the developer to continuously improve the project, ensuring every contribution makes a real impact.
 - **Limited-Time Rewards:** Act now to secure special benefits available exclusively to early backers.
 
+Support the project by clicking the button below:
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="rorrimaesu" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+
 Support the project and help propel QRCraft Pro to new heights by visiting our [Buy Me A Coffee](https://www.buymeacoffee.com/yourusername) page. Every coffee you buy inspires innovation!
 
 ---
