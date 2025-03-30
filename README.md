@@ -30,7 +30,7 @@ QRCraft Pro is designed for businesses and individuals who need a professional Q
 
 ## Demo
 
-A live demo of QRCraft Pro is available on [GitHub Pages](https:///rorrimaesu.github.io/qrcraft-pro).  
+A live demo of QRCraft Pro is available on [GitHub Pages](https://rorrimaesu.github.io/QRCraft-Pro/).  
 *(Replace the URL with your actual GitHub Pages site URL.)*
 
 ## Installation & Deployment
@@ -90,4 +90,3 @@ Support the project and help propel QRCraft Pro to new heights by visiting our [
 ---
 
 _QRCraft Pro is built with passion to deliver reliable QR code generation tools to the community. We welcome feedback and suggestions!_
-````
