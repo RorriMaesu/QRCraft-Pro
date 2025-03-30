@@ -30,7 +30,7 @@ QRCraft Pro is designed for businesses and individuals who need a professional Q
 
 ## Demo
 
-A live demo of QRCraft Pro is available on [GitHub Pages](https://yourusername.github.io/qrcraft-pro).  
+A live demo of QRCraft Pro is available on [GitHub Pages](https:///rorrimaesu.github.io/qrcraft-pro).  
 *(Replace the URL with your actual GitHub Pages site URL.)*
 
 ## Installation & Deployment
@@ -38,7 +38,7 @@ A live demo of QRCraft Pro is available on [GitHub Pages](https://yourusername.g
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/qrcraft-pro.git
+   git clone https://github.com//rorrimaesu/qrcraft-pro.git
    cd qrcraft-pro
    ```
 
@@ -46,18 +46,6 @@ A live demo of QRCraft Pro is available on [GitHub Pages](https://yourusername.g
 
    Simply open the `landing.html` or `index.html` file in your browser to test the project.
 
-3. **Deploy on GitHub Pages:**
-
-   - Push your changes to the `main` branch on GitHub.
-   - In your repository, go to **Settings > Pages**.
-   - Under **Source**, select the root folder and the `main` branch.
-   - Save the settings. Your site will then be available at:  
-     `https://yourusername.github.io/qrcraft-pro`  
-     *(Replace `yourusername` with your GitHub username.)*
-
-## GitHub Pages Setup
-
-Since QRCraft Pro is a static site, GitHub Pages is an ideal free hosting solution. By following the steps above, you can deploy your project without needing to buy a domain. If you decide later to use a custom domain, GitHub Pages supports that too.
 
 ## Usage
 
@@ -95,9 +83,9 @@ If you find value in QRCraft Pro, consider becoming a proud supporter—your con
 
 Support the project by clicking the image below:
 
-[![Buy me a coffee](./images/testimonials/capitalismsucksbutiamsuperpassionateaboutbeingabletoaffordfood.png)](https://www.buymeacoffee.com/yourusername)
+[![Buy me a coffee](./images/testimonials/capitalismsucksbutiamsuperpassionateaboutbeingabletoaffordfood.png)](https://www.buymeacoffee.com//rorrimaesu)
 
-Support the project and help propel QRCraft Pro to new heights by visiting our [Buy Me A Coffee](https://www.buymeacoffee.com/yourusername) page. Every coffee you buy inspires innovation!
+Support the project and help propel QRCraft Pro to new heights by visiting our [Buy Me A Coffee](https://www.buymeacoffee.com//rorrimaesu) page. Every coffee you buy inspires innovation!
 
 ---
 
