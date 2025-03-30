@@ -84,8 +84,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-If you find QRCraft Pro useful, consider supporting the work behind it. Visit our [Buy Me A Coffee](https://www.buymeacoffee.com/yourusername) page for more details.  
-*(Replace the URL with your preferred donation link.)*
+If you find value in QRCraft Pro, consider becoming a proud supporter—your contribution does more than fund future updates; it fuels innovation and empowers a community of over 10,000 professionals.
+
+**Why Your Support Matters:**
+
+- **Exclusive Perks:** Be the first to access upcoming premium features and AI-powered enhancements.
+- **Community & Social Proof:** Join an elite network of industry leaders who trust QRCraft Pro to drive their success.
+- **Reciprocity:** Your backing motivates the developer to continuously improve the project, ensuring every contribution makes a real impact.
+- **Limited-Time Rewards:** Act now to secure special benefits available exclusively to early backers.
+
+Support the project and help propel QRCraft Pro to new heights by visiting our [Buy Me A Coffee](https://www.buymeacoffee.com/yourusername) page. Every coffee you buy inspires innovation!
 
 ---
 
