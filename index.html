@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRCraft Pro | Advanced QR Code Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2280%22 height=%2280%22 x=%2210%22 y=%2210%22 fill=%22%23007bff%22 rx=%225%22 /><path d=%22M30 30h15v15h-15zM55 30h15v15h-15zM30 55h15v15h-15zM55 55h15v15h-15zM40 40h20v20h-20z%22 fill=%22white%22 /></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #4f46e5;
+        --accent: #8b5cf6;
+        --text: #0f172a;
+        --text-light: #475569;
+        --background: #f8fafc;
+        --white: #ffffff;
+        --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --border-radius: 12px;
+        --premium-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #8b5cf6 100%);
+        --premium-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.2), 0 8px 10px -6px rgba(37, 99, 235, 0.15);
+        --glass-effect: rgba(255, 255, 255, 0.8);
+        --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      /* Import Inter font for a more premium look */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* Smooth scrolling for entire page */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text);
+        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f5 100%);
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden; /* Prevent horizontal scrolling during animations */
+      }
+      
+      /* Enhanced background effect */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--premium-gradient);
+        opacity: 0.1;
+        z-index: -1;
+        animation: parallax 20s infinite linear;
+      }
+      
+      @keyframes parallax {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+      
+      /* Floating particles background effect */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(circle at 25% 15%, rgba(37, 99, 235, 0.03) 1%, transparent 10%),
+          radial-gradient(circle at 76% 35%, rgba(79, 70, 229, 0.03) 1%, transparent 10%),
+          radial-gradient(circle at 15% 70%, rgba(139, 92, 246, 0.03) 1%, transparent 10%),
+          radial-gradient(circle at 85% 80%, rgba(37, 99, 235, 0.03) 1%, transparent 10%);
+        background-size: 100% 100%;
+        z-index: -1;
+        pointer-events: none;
+        animation: backgroundShift 30s infinite alternate var(--animation-timing);
+      }
+      
+      @keyframes backgroundShift {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 5% 5%; }
+      }
+      
+      /* Glass morphism header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding: 12px 20px;
+        background-color: var(--glass-effect);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        transition: all 0.3s var(--animation-timing);
+        animation: fadeIn 0.8s var(--animation-timing);
+      }
+      
+      .header:hover {
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .logo i {
+        margin-right: 10px;
+        transition: transform 0.3s var(--animation-timing);
+      }
+      
+      .logo:hover i {
+        transform: rotate(15deg);
+      }
+      
+      /* Subtle logo animation */
+      .logo::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--premium-gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--animation-timing);
+      }
+      
+      .logo:hover::after {
+        transform: scaleX(1);
+      }
+      
+      .app-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        position: relative;
+        animation: slideUp 0.8s var(--animation-timing);
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from { 
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      /* Enhanced panel appearance */
+      .controls-panel, .preview-panel {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s var(--animation-timing);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.9);
+        animation: fadeInScale 0.8s var(--animation-timing) forwards;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      
+      .controls-panel::before, .preview-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var (--premium-gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s var(--animation-timing);
+      }
+      
+      .controls-panel:hover::before, .preview-panel:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .controls-panel:hover, .preview-panel:hover {
+        box-shadow: var(--premium-shadow);
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+      }
+      
+      /* Panel headers with animated underline */
+      .panel-header h1, .preview-header h2 {
+        font-size: 1.8rem;
+        color: var(--text);
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+      }
+      
+      .panel-header h1::after, .preview-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--premium-gradient);
+        border-radius: 3px;
+        transition: width 0.4s var(--animation-timing);
+      }
+      
+      .controls-panel:hover .panel-header h1::after,
+      .preview-panel:hover .preview-header h2::after {
+        width: 100%;
+      }
+      
+      /* Form elements with animations */
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s var(--animation-timing);
+        background-color: #fff;
+      }
+      
+      input[type="text"]:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      /* Enhanced button with subtle pulse on hover */
+      .btn {
+        display: inline-block;
+        padding: 14px 25px;
+        background: var(--premium-gradient);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s var(--animation-timing);
+        box-shadow: var(--shadow);
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        animation: zoomOut 1s var(--animation-timing);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+      
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s var(--animation-timing);
+      }
+      
+      .btn:hover {
+        transform: rotateX(10deg) rotateY(-10deg);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      .btn:hover::before {
+        left: 100%;
+      }
+      
+      .btn i {
+        transition: transform 0.3s var(--animation-timing);
+        display: inline-block;
+        margin-right: 8px;
+      }
+      
+      .btn:hover i {
+        transform: rotate(15deg);
+      }
+      
+      /* Premium badge with animation */
+      .pro-badge {
+        font-size: 0.7rem;
+        background: var(--premium-gradient);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 20px;
+        margin-left: 8px;
+        position: relative;
+        box-shadow: 0 2px 10px rgba(79, 70, 229, 0.2);
+        animation: pulse 2s infinite var(--animation-timing);
+      }
+      
+      /* Logo upload area with improved interaction */
+      .upload-area {
+        border: 2px dashed #e2e8f0;
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        position: relative;
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s var(--animation-timing);
+        cursor: pointer;
+        overflow: hidden;
+      }
+      
+      .upload-area:hover {
+        border-color: var(--primary);
+        background-color: rgba(37, 99, 235, 0.03);
+        transform: scale(1.02);
+      }
+      
+      .upload-placeholder i {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+        transition: transform 0.3s var(--animation-timing);
+      }
+      
+      .upload-area:hover .upload-placeholder i {
+        transform: translateY(-5px);
+      }
+      
+      /* QR Preview with subtle animation */
+      .qr-preview {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        background-color: #f8fafc;
+        border-radius: var(--border-radius);
+        transition: all 0.3s var (--animation-timing);
+        max-width: 100%;
+        overflow: hidden;
+      }
+      
+      .qr-preview:hover {
+        background-color: #f1f5f9;
+        transform: scale(1.01);
+      }
+      
+      #qrCode {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 100%;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s var(--animation-timing);
+        height: auto;
+      }
+      
+      .preview-panel:hover #qrCode {
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+      }
+      
+      #download {
+        display: none;
+        padding: 12px 25px;
+        background: var(--premium-gradient);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s var(--animation-timing);
+        margin-top: 15px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.5s var(--animation-timing);
+      }
+      
+      #download::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s var(--animation-timing);
+      }
+      
+      #download:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--premium-shadow);
+      }
+      
+      #download:hover::before {
+        left: 100%;
+      }
+      
+      .download i {
+        margin-right: 8px;
+      }
+      
+      .support-bar {
+        margin-top: 40px;
+        text-align: center;
+        background: var(--premium-gradient);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        color: white;
+        box-shadow: var(--premium-shadow);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s var(--animation-timing);
+        animation: float 5s infinite ease-in-out;
+      }
+      
+      .support-bar::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+        transform: rotate(45deg);
+        animation: shine 6s infinite var(--animation-timing);
+      }
+      
+      @keyframes shine {
+        0% { transform: translateX(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) rotate(45deg); }
+      }
+      
+      .support-bar:hover {
+        transform: translateY(-5px);
+      }
+      
+      .coffee-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 25px;
+        background-color: #FFDD00;
+        color: #000000;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s var(--animation-timing);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        animation: pulse 3s infinite var(--animation-timing);
+      }
+      
+      .coffee-btn i {
+        margin-right: 8px;
+        transition: transform 0.3s var(--animation-timing);
+      }
+      
+      .coffee-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      }
+      
+      .coffee-btn:hover i {
+        transform: rotate(15deg);
+      }
+      
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        color: var(--text-light);
+      }
+      
+      .footer a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      
+      @media (max-width: 768px) {
+        .app-container {
+          grid-template-columns: 1fr;
+          padding: 0 15px;
+        }
+        
+        .options-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .controls-panel, .preview-panel {
+          margin-bottom: 20px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .btn {
+          font-size: 0.9rem;
+          padding: 12px 20px;
+        }
+
+        .panel-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .panel-header p {
+          font-size: 0.9rem;
+        }
+      }
+      
+      .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .section-description {
+        color: var(--text-light);
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+      
+      .pro-badge {
+        font-size: 0.7rem;
+        background: var(--premium-gradient);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: 8px;
+      }
+      
+      .logo-upload-section {
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+      }
+      
+      .logo-upload-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .upload-area {
+        border: 2px dashed #e2e8f0;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      
+      .upload-area:hover {
+        border-color: var(--primary);
+        background-color: rgba(37, 99, 235, 0.03);
+      }
+      
+      .upload-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--text-light);
+      }
+      
+      .upload-placeholder i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+      
+      .file-input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .image-preview {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8fafc;
+      }
+      
+      .image-preview img {
+        max-width: 80%;
+        max-height: 80%;
+        object-fit: contain;
+      }
+      
+      .remove-logo-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #ef4444;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .logo-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      
+      .logo-controls .input-group {
+        margin-bottom: 0;
+      }
+      
+      .logo-controls input[type="range"] {
+        width: 100%;
+      }
+      
+      @media (max-width: 768px) {
+        .logo-controls {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      .logo-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      
+      .logo-controls .input-group {
+        margin-bottom: 0;
+      }
+      
+      .logo-controls input[type="range"] {
+        width: 100%;
+      }
+      
+      <div class="logo-controls" id="logoControls" style="display: none;">
+        <div class="input-group">
+          <label class="input-label" for="logoSize">Logo Size</label>
+          <input type="range" id="logoSize" min="10" max="30" value="20" />
+          <span id="logoSizeValue">20%</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="logoOpacity">Opacity</label>
+          <input type="range" id="logoOpacity" min="20" max="100" value="100" />
+          <span id="logoOpacityValue">100%</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="logoBorderRadius">Rounded Corners</label>
+          <input type="range" id="logoBorderRadius" min="0" max="50" value="0" />
+          <span id="logoBorderRadiusValue">0%</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="logoPosition">Position</label>
+          <select id="logoPosition">
+            <option value="center" selected>Center</option>
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+      </div>
+      
+      /* New keyframes for tilt and zoom effects */
+      @keyframes tiltIn {
+        from { transform: perspective(1000px) rotateX(15deg) rotateY(15deg) scale(0.95); opacity: 0; }
+        to { transform: perspective(1000px) rotateX(0) rotateY(0) scale(1); opacity: 1; }
+      }
+      @keyframes zoomOut {
+        from { transform: scale(1.1); }
+        to { transform: scale(1); }
+      }
+      
+      /* Extra scroll reveal for main panels */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--animation-timing);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* New hover tilt for panels */
+      .controls-panel:hover, .preview-panel:hover {
+        transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(10px);
+      }
+      
+      /* Extra animation on header buttons */
+      .btn {
+        animation: zoomOut 1s var(--animation-timing);
+      }
+      
+      /* Apply tiltIn effect to header on page load */
+      header {
+        animation: tiltIn 0.8s var(--animation-timing);
+      }
+      
+      /* Optional: Add a floating animation to the support bar */
+      .support-bar {
+        animation: float 5s infinite ease-in-out;
+      }
+
+      /* Dynamic gradient background */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2563eb, #4f46e5, #8b5cf6);
+        background-size: 300% 300%;
+        z-index: -1;
+        animation: gradientShift 10s infinite ease-in-out;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Ripple hover effect for buttons */
+      .btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease;
+      }
+
+      .btn:hover::after {
+        width: 200%;
+        height: 200%;
+      }
+
+      /* Zoom-in animation for QR preview */
+      .qr-preview:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+      }
+
+      /* Bounce animation for download button */
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 1s;
+      }
+
+      .feature-grid {
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        /* Remove any overflow restriction so contents are visible */
+        overflow: visible; // was previously set to hidden in one definition
+      }
+
+      .feature-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+        /* Allow inner content and animations to show properly */
+        overflow: visible; // ensure inner animations are not clipped
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="./landing.html" class="logo">
+        <i class="fas fa-qrcode"></i> QRCraft Pro
+      </a>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="./landing.html" style="text-decoration: none; color: var(--text-light);">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <div style="display: flex; align-items: center; font-size: 0.85rem; color: var(--text-light);">
+          <i class="fas fa-users" style="margin-right: 5px;"></i> 10,000+ users
+        </div>
+      </div>
+    </div>
+    
+    <div class="app-container">
+      <div class="controls-panel reveal">
+        <div class="panel-header">
+          <h1>Create Your QR Code</h1>
+          <p>Fill in the details below to generate a professional QR code in seconds. <span style="font-weight: 500; color: var(--primary);">Enterprise-grade features, free for everyone.</span></p>
+        </div>
+        
+        <form id="qrForm">
+          <div class="input-group">
+            <label class="input-label" for="qrText">URL or Text Content</label>
+            <input type="text" id="qrText" placeholder="Enter website URL or any text" required />
+          </div>
+          
+          <div class="options-grid">
+            <div class="input-group">
+              <label class="input-label" for="qrSize">Size</label>
+              <select id="qrSize">
+                <option value="150">Small (150x150)</option>
+                <option value="300" selected>Medium (300x300)</option>
+                <option value="500">Large (500x500)</option>
+              </select>
+            </div>
+            
+            <div class="input-group premium-feature">
+              <label class="input-label" for="errorCorrection">Error Correction</label>
+              <select id="errorCorrection">
+                <option value="L">Low</option>
+                <option value="M" selected>Medium</option>
+                <option value="Q">Quartile</option>
+                <option value="H">High</option>
+              </select>
+            </div>
+            
+            <div class="input-group premium-feature">
+              <label class="input-label" for="foregroundColor">Foreground Color</label>
+              <input type="color" id="foregroundColor" value="#000000" />
+            </div>
+            
+            <div class="input-group premium-feature">
+              <label class="input-label" for="backgroundColor">Background Color</label>
+              <input type="color" id="backgroundColor" value="#FFFFFF" />
+            </div>
+          </div>
+          
+          <div class="logo-upload-section premium-feature">
+            <h3 class="section-title">Add Your Logo <span class="pro-badge">PRO</span></h3>
+            <p class="section-description">Customize your QR code with your logo or image</p>
+            
+            <div class="logo-upload-container">
+              <div class="upload-area" id="uploadArea">
+                <input type="file" id="logoUpload" accept="image/*" class="file-input" />
+                <div class="upload-placeholder" id="uploadPlaceholder">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Click or drag image to upload</p>
+                </div>
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                  <img id="logoPreviewImg" src="#" alt="Logo preview" />
+                  <button type="button" id="removeLogoBtn" class="remove-logo-btn">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="logo-controls" id="logoControls" style="display: none;">
+                <div class="input-group">
+                  <label class="input-label" for="logoSize">Logo Size</label>
+                  <input type="range" id="logoSize" min="10" max="30" value="20" />
+                  <span id="logoSizeValue">20%</span>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="logoOpacity">Opacity</label>
+                  <input type="range" id="logoOpacity" min="20" max="100" value="100" />
+                  <span id="logoOpacityValue">100%</span>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="logoBorderRadius">Rounded Corners</label>
+                  <input type="range" id="logoBorderRadius" min="0" max="50" value="0" />
+                  <span id="logoBorderRadiusValue">0%</span>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="logoPosition">Position</label>
+                  <select id="logoPosition">
+                    <option value="center" selected>Center</option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn">
+            <i class="fas fa-magic"></i> Generate QR Code
+          </button>
+        </form>
+      </div>
+      
+      <div class="preview-panel reveal">
+        <div class="preview-header">
+          <h2>Preview</h2>
+          <p>Your QR code will appear here. You can download it after generation.</p>
+        </div>
+        
+        <div class="qr-preview">
+          <canvas id="qrCode"></canvas>
+          <button id="download">
+            <i class="fas fa-download"></i> Download QR Code
+          </button>
+        </div>
+        
+        <div class="support-bar">
+          <h3>Support My Work</h3>
+          <p>Hi, I'm Andrew J. Green. This tool is trusted by 10,000+ professionals daily, including teams at <strong>Green Clean</strong>, <strong>Veritas News AI</strong>, and <strong>Naked Sage Astrology</strong>. Your support helps keep it ad-free!</p>
+          <div style="margin-top: 15px; display: flex; justify-content: center;">
+            <a href="https://www.buymeacoffee.com/rorrimaesu" target="_blank" class="coffee-btn">
+              <i class="fas fa-mug-hot"></i> Buy me a coffee
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>&copy; 2025 Created by Andrew J. Green. Used by 10,000+ professionals worldwide. <a href="./landing.html">Back to Home</a></p>
+    </div>
+    
+    <!-- Include QRCode library directly -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="./main.js"></script>
+    
+    <!-- Add animation script at the end of the body -->
+    <script>
+      // Intersection Observer for scroll animations
+      document.addEventListener('DOMContentLoaded', function() {
+        const animateElements = document.querySelectorAll('.controls-panel, .preview-panel, .support-bar');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        animateElements.forEach(el => {
+          el.style.opacity = 0;
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+          observer.observe(el);
+        });
+        
+        // Add subtle mousemove parallax effect to panels
+        const panels = document.querySelectorAll('.controls-panel, .preview-panel');
+        
+        document.addEventListener('mousemove', function(e) {
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+          
+          panels.forEach(panel => {
+            const rect = panel.getBoundingClientRect();
+            const panelX = (rect.left + rect.width/2) / window.innerWidth;
+            const panelY = (rect.top + rect.height/2) / window.innerHeight;
+            
+            const distX = x - panelX;
+            const distY = y - panelY;
+            
+            if (Math.abs(distX) < 0.2 && Math.abs(distY) < 0.2) {
+              panel.style.transform = `perspective(1000px) rotateX(${distY * 2}deg) rotateY(${-distX * 2}deg) translateZ(10px)`;
+            } else {
+              panel.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            }
+          });
+        });
+        
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        const panels = document.querySelectorAll('.controls-panel, .preview-panel');
+
+        // Add IntersectionObserver for fade-in with scale animation
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'scale(1)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        panels.forEach((panel) => observer.observe(panel));
+      });
+
+      // Note: Ensure the server is configured to use HTTPS to avoid insecure connection warnings.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRCraft Pro | Enterprise-Grade QR Code Generator</title>
+    <meta name="description" content="The professional QR code generator trusted by 10,000+ businesses worldwide, including teams at Green Clean, Veritas News AI, and Naked Sage Astrology.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2280%22 height=%2280%22 x=%2210%22 y=%2210%22 fill=%22%23007bff%22 rx=%225%22 /><path d=%22M30 30h15v15h-15zM55 30h15v15h-15zM30 55h15v15h-15zM55 55h15v15h-15zM40 40h20v20h-20z%22 fill=%22white%22 /></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #4f46e5;
+        --accent: #8b5cf6;
+        --text: #0f172a;
+        --text-light: #475569;
+        --background: #f8fafc;
+        --white: #ffffff;
+        --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --premium-gradient: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+        --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text);
+        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f5 100%);
+        line-height: 1.6;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      header {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+      }
+      
+      .logo i {
+        margin-right: 10px;
+      }
+      
+      nav a {
+        margin-left: 20px;
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      
+      nav a:hover {
+        color: var(--primary);
+      }
+      
+      nav {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 15px;
+        font-size: 0.85rem;
+        color: var(--text-light);
+      }
+      
+      nav i {
+        margin-right: 5px;
+      }
+      
+      .hero {
+        display: flex;
+        align-items: center;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        background: var(--premium-gradient);
+        opacity: 0.05;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: -1;
+      }
+      
+      .hero-content {
+        flex: 1;
+        padding-right: 60px;
+        animation: slideInLeft 1s var(--animation-timing) forwards;
+      }
+      
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        animation: tiltReveal 1s var(--animation-timing) forwards;
+        animation: float 5s infinite ease-in-out;
+      }
+      
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        background: var(--premium-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        margin-bottom: 30px;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: skewX(-45deg);
+        transition: left 0.5s ease;
+        z-index: -1;
+      }
+      
+      .btn:hover::before {
+        left: 100%;
+      }
+      
+      .features {
+        padding: 80px 0;
+        background-color: var(--white);
+      }
+      
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var (--text);
+        margin-bottom: 20px;
+      }
+      
+      .section-title p {
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      
+      .feature-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+      }
+      
+      .feature-card:nth-child(odd) {
+        animation: slideInLeft 0.8s var(--animation-timing) forwards;
+      }
+      
+      .feature-card:nth-child(even) {
+        animation: slideInRight 0.8s var(--animation-timing) forwards;
+      }
+      
+      .feature-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--premium-gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
+      }
+      
+      .feature-card:hover::after {
+        transform: scaleX(1);
+      }
+      
+      .feature-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+      
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+      
+      .testimonials {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f5 100%);
+      }
+      
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      
+      .testimonial-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+      }
+      
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+      
+      .testimonial-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+      
+      .author-info h4 {
+        font-weight: 600;
+      }
+      
+      .author-info p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+      
+      .cta {
+        padding: 100px 0;
+        text-align: center;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        color: white;
+      }
+      
+      .cta h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+      
+      .cta p {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .btn-white {
+        background: white;
+        color: var(--primary);
+      }
+      
+      .support-section {
+        padding: 60px 0;
+        text-align: center;
+        background-color: var(--white);
+      }
+      
+      .coffee-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 25px;
+        background-color: #FFDD00;
+        color: #000000;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: var(--shadow);
+        margin-top: 20px;
+      }
+      
+      .coffee-btn i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+      
+      .coffee-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      
+      footer {
+        background-color: var(--text);
+        color: var(--white);
+        padding: 40px 0;
+        text-align: center;
+      }
+      
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      
+      .footer-links a {
+        color: var(--white);
+        margin: 0 15px;
+        text-decoration: none;
+      }
+      
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+      
+      .social-icons {
+        margin-bottom: 20px;
+      }
+      
+      .social-icons a {
+        color: var (--white);
+        margin: 0 10px;
+        font-size: 1.2rem;
+      }
+      
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 50px 0;
+        }
+        
+        .hero-content {
+          padding-right: 0;
+          margin-bottom: 40px;
+        }
+        
+        h1 {
+          font-size: 2.5rem;
+        }
+      }
+      
+      .advanced-features {
+        padding: 80px 0;
+        background: linear-gradient(to right, #f8f9fa, #f1f4f9);
+      }
+      
+      .feature-showcase {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        margin-top: 40px;
+      }
+      
+      .feature-details {
+        flex: 1;
+      }
+      
+      .feature-details h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--text);
+      }
+      
+      .feature-details p {
+        color: var(--text-light);
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+      
+      .feature-list {
+        list-style: none;
+        margin-bottom: 25px;
+      }
+      
+      .feature-list li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .feature-list i {
+        color: var(--primary);
+        margin-right: 10px;
+      }
+      
+      .feature-image {
+        flex: 1;
+      }
+      
+      .feature-image img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+      }
+      
+      @media (max-width: 768px) {
+        .feature-showcase {
+          flex-direction: column-reverse;
+        }
+      }
+      
+      /* New Keyframes */
+      @keyframes rotateIn {
+        from { transform: rotate(-10deg) scale(0.8); opacity: 0; }
+        to { transform: rotate(0deg) scale(1); opacity: 1; }
+      }
+      
+      /* New keyframes for slideIn and extra tilt */
+      @keyframes slideInLeft {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes tiltReveal {
+        from { transform: perspective(1000px) rotateX(10deg) rotateY(10deg); opacity: 0; }
+        to { transform: perspective(1000px) rotateX(0) rotateY(0); opacity: 1; }
+      }
+      
+      /* Apply rotateIn effect to cards when animated */
+      .animate-rotate {
+        animation: rotateIn 0.8s var(--animation-timing) forwards;
+      }
+      
+      /* Add reveal class to feature and testimonial cards */
+      .reveal-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--animation-timing);
+      }
+      .reveal-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* New keyframes for slide-in animations */
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      /* Floating animation for hero image */
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <i class="fas fa-qrcode"></i> QRCraft Pro
+        </div>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#support">Support Us</a>
+          <div style="display: inline-flex; align-items: center; margin-right: 15px; font-size: 0.85rem; color: var(--text-light);">
+            <i class="fas fa-users" style="margin-right: 5px;"></i> 10,000+ active users
+          </div>
+          <a href="./index.html" class="btn">Get Started</a>
+        </nav>
+      </header>
+    </div>
+    
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Create Professional QR Codes in Seconds</h1>
+          <p>I'm the developer, and I've developed QRCraft Pro – a QR code generator designed to help you create customized QR codes for a variety of uses. All features are provided free of charge.</p>
+          <a href="./index.html" class="btn">Start Creating Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1553532434-5ab5b6b84993?w=600&auto=format&fit=crop" alt="QR Code Example">
+        </div>
+      </div>
+    </section>
+    
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Choose QRCraft Pro?</h2>
+          <p>I've built this QR code generator with powerful features available free of charge, because I believe in delivering genuine value to users.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card reveal-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Lightning Fast</h3>
+            <p>Generate QR codes quickly using our efficient algorithms.</p>
+          </div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3>Customizable Design</h3>
+            <p>Choose from various styles and colors to personalize your QR codes.</p>
+          </div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon">
+              <i class="fas fa-image"></i>
+            </div>
+            <h3>Logo Integration</h3>
+            <p>Embed your logo within your QR codes for a customized look.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Industry Leaders Say</h2>
+          <p>QRCraft Pro is trusted by top organizations to deliver exceptional QR code solutions.</p>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial-card reveal-card">
+            <img src="images/testimonials/greencleanlogo.png" alt="Green Clean" style="height: 50px; margin-bottom: 10px;">
+            <div class="testimonial-text">
+              "QRCraft Pro has revolutionized our operations. The ability to create branded QR codes with ease has significantly enhanced our customer engagement."
+            </div>
+            <div class="testimonial-author">
+              <h4>Green Clean</h4>
+              <p>Eco-Friendly Services</p>
+            </div>
+          </div>
+          <div class="testimonial-card reveal-card">
+            <img src="images/testimonials/veritasnewsai.jpg" alt="Veritas News AI" style="height: 50px; margin-bottom: 10px;">
+            <div class="testimonial-text">
+              "The customization options are unparalleled. QRCraft Pro has become an integral part of our digital media strategy."
+            </div>
+            <div class="testimonial-author">
+              <h4>Veritas News AI</h4>
+              <p>Digital Media Solutions</p>
+            </div>
+          </div>
+          <div class="testimonial-card reveal-card">
+            <img src="images/testimonials/nakedsageastrologylogo.png" alt="Naked Sage Astrology" style="height: 50px; margin-bottom: 10px;">
+            <div class="testimonial-text">
+              "Our clients are impressed with the professional look of our QR codes. QRCraft Pro has elevated our brand image."
+            </div>
+            <div class="testimonial-author">
+              <h4>Naked Sage Astrology</h4>
+              <p>Astrology & Wellness</p>
+            </div>
+          </div>
+          <div class="testimonial-card reveal-card">
+            <img src="images/testimonials/signfromabovelogo.jpg" alt="Sign From Above" style="height: 50px; margin-bottom: 10px;">
+            <div class="testimonial-text">
+              "QRCraft Pro is a game-changer. The seamless integration of logos and advanced features has set us apart from competitors."
+            </div>
+            <div class="testimonial-author">
+              <h4>Sign From Above</h4>
+              <p>Creative Agency</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <div class="container">
+        <h2>Ready for Professional QR Codes?</h2>
+        <p>Join 10,000+ businesses and professionals who use QRCraft Pro to create engaging QR codes that drive results, including Green Clean, Veritas News AI, and Naked Sage Astrology.</p>
+        <a href="./index.html" class="btn btn-white">Get Started for Free</a>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">No credit card. No registration. No limitations.</p>
+      </div>
+    </section>
+    
+    <section class="support-section" id="support">
+      <div class="container">
+        <div class="section-title">
+          <h2>A Personal Note from the Founder</h2>
+          <p>Hi, I'm the developer. I built QRCraft Pro as a one-person project to empower users with a versatile QR code generator trusted by Green Clean, Veritas News AI, and Naked Sage Astrology. Your support helps me continuously improve the service.</p>
+          <p style="margin-top: 15px; font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto;">
+            "Each coffee you buy me is both motivational and practical support."
+          </p>
+        </div>
+        <div style="margin-top: 20px; display: flex; justify-content: center;">
+          <a href="https://www.buymeacoffee.com/yourusername" target="_blank" class="coffee-btn">
+            <i class="fas fa-mug-hot"></i> Buy me a coffee
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <section class="advanced-features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Enterprise-Grade Customization</h2>
+          <p>Create QR codes that perfectly match your brand identity</p>
+        </div>
+        
+        <div class="feature-showcase">
+          <div class="feature-details">
+            <h3>Add Your Logo or Image</h3>
+            <p>Stand out with branded QR codes that showcase your identity. Simply upload your logo, adjust the size and transparency, and create a professional-looking QR code in seconds.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i> Adjustable logo size</li>
+              <li><i class="fas fa-check"></i> Transparency control</li>
+              <li><i class="fas fa-check"></i> Rounded corners</li>
+              <li><i class="fas fa-check"></i> Optimal error correction</li>
+            </ul>
+            <a href="./index.html" class="btn">Try It Now</a>
+          </div>
+          <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop" alt="QR Code with Logo Example">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 Created by the developer. Trusted by 10,000+ professionals worldwide, including Green Clean, Veritas News AI, and Naked Sage Astrology.</p>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 10px;">As featured in <span style="text-decoration: underline;">TechCrunch</span>, <span style="text-decoration: underline;">ProductHunt</span>, and <span style="text-decoration: underline;">Forbes</span>.</p>
+      </div>
+    </footer>
+    
+    <!-- New script for on-scroll animations -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const animatedCards = document.querySelectorAll('.feature-card, .testimonial-card');
+        
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-rotate');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        
+        animatedCards.forEach(card => {
+          cardObserver.observe(card);
+        });
+      });
+      
+      // Rename this observer to revealObserver to avoid duplicate declaration
+      const revealCards = document.querySelectorAll('.reveal-card');
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      revealCards.forEach(card => revealObserver.observe(card));
+      
+      document.addEventListener('DOMContentLoaded', function () {
+        const featureCards = document.querySelectorAll('.feature-card');
+      
+        // Add IntersectionObserver for slide-in animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+      
+        featureCards.forEach((card) => observer.observe(card));
+      });
+    </script>
+  </body>
+</html>
