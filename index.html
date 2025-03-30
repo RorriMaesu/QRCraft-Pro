@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Add redirect to landing page -->
-    <meta http-equiv="refresh" content="0;url=landing.html" />
+    <!-- Conditionally redirect to landing.html only if skipredirect is not present -->
+    <script>
+      if (!window.location.search.includes("skipredirect")) {
+        window.location.replace("landing.html");
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QRCraft Pro | Advanced QR Code Generator</title>
