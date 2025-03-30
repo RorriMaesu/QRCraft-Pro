@@ -37,9 +37,7 @@ QRCraft Pro is designed for businesses and individuals who need a professional Q
 - **Free & Open Source:** Enjoy all the features—no hidden costs or registrations.
 
 ## Demo
-
 A live demo of QRCraft Pro is available on [GitHub Pages](https://rorrimaesu.github.io/QRCraft-Pro/).  
-*(Replace the URL with your actual GitHub Pages site URL.)*
 
 ## Installation & Deployment
 
